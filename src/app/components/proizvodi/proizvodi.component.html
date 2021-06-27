@@ -1,7 +1,8 @@
 <div class="cardKosara container mt-5">
   <p style="font-size: 25px" class="text-center pt-1">
     Dodano: 2 | Ukupno:
-    {{ getSumPrepJaja() + getSumKiselaPrepJaja() + getSumRezanci() }} kn
+    {{ getSumPrepJaja() + getSumKiselaPrepJaja() + getSumRezanci() }}
+    kn
   </p>
 </div>
 
@@ -19,14 +20,18 @@
       <strong>{{ x.proizvod }}</strong> --
       <a style="font-size: 34px">{{ x.cijena }} kn</a>
       <input type="number" class="form-control" [(ngModel)]="x.kolicina" />
+      <button
+        (click)="DodajJaja(x.proizvod)"
+        class="btn btn-success dodaj mx-5"
+        type="button"
+      >
+        Dodaj u košaricu
+      </button>
     </li>
   </ul>
   <ul class="mt-2 pt-4 kosarica" style="font-size: 20px">
     Ukupno:
     <strong>{{ getSumPrepJaja() }} kn</strong>
-    <button class="btn btn-success dodaj mx-5" type="button">
-      Dodaj u košaricu
-    </button>
   </ul>
 </div>
 <br /><br />

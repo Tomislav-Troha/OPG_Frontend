@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faOtter } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-proizvodi',
@@ -14,9 +14,9 @@ export class ProizvodiComponent implements OnInit {
   faCartPlus = faCartPlus;
 
   prepelicja_jaja: any = [
-    { proizvod: 'Rifuza - kom.', cijena: 1.25, kolicina: 0 },
-    { proizvod: 'pakiranje 12 jaja', cijena: 15.0, kolicina: 0 },
-    { proizvod: 'pakiranje 20 jaja', cijena: 25.0, kolicina: 0 },
+    { id: 1, proizvod: 'Rifuza - kom.', cijena: 1.25, kolicina: 0 },
+    { id: 2, proizvod: 'pakiranje 12 jaja', cijena: 15.0, kolicina: 0 },
+    { id: 3, proizvod: 'pakiranje 20 jaja', cijena: 25.0, kolicina: 0 },
   ];
 
   Ukiseljena_prepelicja_jaja: any = [
@@ -57,5 +57,16 @@ export class ProizvodiComponent implements OnInit {
     }
 
     return sum;
+  }
+
+  DodajJaja(proizvod: any) {
+    let ukupno = this.getSumPrepJaja();
+    let kolicina;
+
+    for (let i = 0; i < this.prepelicja_jaja.length; i++) {
+      kolicina = this.prepelicja_jaja[i].kolicina;
+    }
+    console.log(proizvod, ukupno, kolicina);
+    return kolicina;
   }
 }

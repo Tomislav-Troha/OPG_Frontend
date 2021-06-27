@@ -37,8 +37,6 @@ export class LoginRegisterComponent implements OnInit {
           Validators.minLength(6),
           Validators.required,
         ]),
-        ime: new FormControl(this.ime, [Validators.required]),
-        prezime: new FormControl(this.prezime, [Validators.required]),
       },
       { updateOn: 'submit' }
     );
@@ -81,25 +79,33 @@ export class LoginRegisterComponent implements OnInit {
   }
 
   onSubmitlogin(value: any, LoginForm: FormControl) {
-    console.log(value.email);
+    //console.log(value);
     if (!this.form.valid || LoginForm.status == 'INVALID') {
       //console.log('Submit', LoginForm.status);
       this.feedback = true;
     } else {
       this.feedback = false;
-      console.log(value.email, value.lozinka);
+      console.log('Email:', value.email, 'Lozinka:', value.lozinka);
     }
   }
 
   onSubmitRegister(value: any, LoginForm: FormControl) {
+    //console.log(value);
     if (!this.register.valid || LoginForm.status == 'INVALID') {
       //console.log('Submit', LoginForm.status);
       this.feedback1 = true;
     } else {
       this.feedback1 = false;
-      console.log(value.email, value.lozinka);
+      console.log(
+        'Email:',
+        value.email,
+        'Lozinka:',
+        value.lozinka,
+        'Ime:',
+        value.ime,
+        'Prezime:',
+        value.prezime
+      );
     }
-
-    console.log();
   }
 }
