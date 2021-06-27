@@ -1,0 +1,26 @@
+.navbar-collapse {
+  font-size: 25px;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.navbar {
+  max-width: 1800px;
+  border-radius: 10px;
+  background-color: #13855b !important;
+  fill: rgba(196, 196, 196, 1);
+  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.788));
+  overflow: visible;
+}
+
+.navbar-brand {
+  font-family: "Freestyle Script";
+  font-size: 55px;
+}
+
+.shoppingBasket {
+  font-size: 45px;
+  cursor: pointer;
+}

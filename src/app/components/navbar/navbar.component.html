@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mx-5">
+  <div class="container-fluid">
+    <a class="navbar-brand">OPG Jurkovic Ivan</a>
+    <button
+      class="navbar-toggler mx-auto"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <form class="d-flex mx-4">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mt-2">
+          <li class="nav-item mt-2">
+            <a class="nav-link active" aria-current="page" routerLink="home"
+              >Početna</a
+            >
+          </li>
+
+          <li class="nav-item mt-2">
+            <a
+              routerLink="proizvodi"
+              class="nav-link active"
+              aria-current="page"
+              >Proizvodi</a
+            >
+          </li>
+
+          <li class="nav-item mt-2">
+            <a class="nav-link active" aria-current="page" href="#">Kontakt</a>
+          </li>
+
+          <li class="nav-item mt-2">
+            <a
+              class="nav-link active"
+              routerLink="prijava_registracija"
+              aria-current="page"
+              href="#"
+              >Prijava</a
+            >
+          </li>
+
+          <fa-icon
+            routerLink="kosarica"
+            class="shoppingBasket px-3 mb-1"
+            [icon]="faShoppingBasket"
+          ></fa-icon>
+        </ul>
+      </div>
+    </form>
+  </div>
+</nav>
+<router-outlet></router-outlet>

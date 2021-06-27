@@ -1,0 +1,87 @@
+<div class="cardKosara container mt-5">
+  <p style="font-size: 25px" class="text-center pt-1">
+    Dodano: 2 | Ukupno:
+    {{ getSumPrepJaja() + getSumKiselaPrepJaja() + getSumRezanci() }} kn
+  </p>
+</div>
+
+<div class="card mx-auto mt-5">
+  <h5 class="card-title text-center mt-2 mx-2">Svjeza prepelicja jaja</h5>
+  <img class="img-fluid jajcaSlika mx-auto mt-2" [src]="jajca" />
+  <div class="card-body">
+    <p style="float: right; font-size: 18px" class="mt-4">Količina:</p>
+  </div>
+  <ul
+    class="list-group list-group-flush tekst"
+    *ngFor="let x of prepelicja_jaja; let i = index"
+  >
+    <li class="list-group-item">
+      <strong>{{ x.proizvod }}</strong> --
+      <a style="font-size: 34px">{{ x.cijena }} kn</a>
+      <input type="number" class="form-control" [(ngModel)]="x.kolicina" />
+    </li>
+  </ul>
+  <ul class="mt-2 pt-4 kosarica" style="font-size: 20px">
+    Ukupno:
+    <strong>{{ getSumPrepJaja() }} kn</strong>
+    <button class="btn btn-success dodaj mx-5" type="button">
+      Dodaj u košaricu
+    </button>
+  </ul>
+</div>
+<br /><br />
+
+<div class="card mx-auto mt-5">
+  <h5 class="card-title text-center mt-2 mx-2">
+    Ukiseljena prepeličja jaja u domaćoj povrtnoj marinadi
+  </h5>
+  <img class="img-fluid jajcaSlika mx-auto mt-2" [src]="ukis" />
+  <div class="card-body">
+    <p style="float: right; font-size: 18px" class="mt-4">Količina:</p>
+  </div>
+  <ul
+    class="list-group list-group-flush tekst"
+    *ngFor="let x of Ukiseljena_prepelicja_jaja; let i = index"
+  >
+    <li class="list-group-item">
+      <strong>{{ x.proizvod }}</strong> --
+      <a style="font-size: 34px">{{ x.cijena }} kn</a>
+      <input type="number" class="form-control" [(ngModel)]="x.kolicina" />
+    </li>
+  </ul>
+  <ul class="mt-2 pt-4 kosarica" style="font-size: 20px">
+    Ukupno:
+    <strong>{{ getSumKiselaPrepJaja() }} kn</strong>
+    <button class="btn btn-success dodaj mx-5" type="button">
+      Dodaj u košaricu
+    </button>
+  </ul>
+</div>
+<br /><br />
+
+<div class="card mx-auto mt-5">
+  <h5 class="card-title text-center mt-2 mx-2">Bakini domaći rezanci</h5>
+  <img class="img-fluid jajcaSlika mx-auto mt-2" [src]="rez" />
+  <div class="card-body">
+    <p style="float: right; font-size: 18px" class="mt-4">Količina:</p>
+  </div>
+  <ul
+    class="list-group list-group-flush tekst"
+    *ngFor="let x of rezanci; let i = index"
+  >
+    <li class="list-group-item">
+      <strong>{{ x.proizvod }}</strong> --
+      <a style="font-size: 34px">{{ x.cijena }} kn</a>
+      <input type="number" class="form-control" [(ngModel)]="x.kolicina" />
+    </li>
+  </ul>
+  <ul class="mt-2 pt-4 kosarica" style="font-size: 20px">
+    Ukupno:
+    <strong>{{ getSumRezanci() }} kn</strong>
+    <button class="btn btn-success dodaj mx-5" type="button">
+      Dodaj u košaricu
+    </button>
+  </ul>
+</div>
+
+<br /><br /><br /><br />

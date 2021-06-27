@@ -1,0 +1,43 @@
+.KokosSlika {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+.item {
+  width: 500px;
+  max-width: 100%;
+}
+
+.line {
+  background-color: #858080;
+}
+
+.img-fluid {
+  border-radius: 10px;
+  fill: rgba(196, 196, 196, 1);
+  filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.788));
+}
+
+.img-fluid_ {
+  max-width: 100%;
+}
+
+.ptica {
+  width: 476px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.textarea {
+  max-width: 800px;
+}
+
+.textarea_2 {
+  max-width: 800px;
+}
+
+.textarea_3 {
+  max-width: 800px;
+}

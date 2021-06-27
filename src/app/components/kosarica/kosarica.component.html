@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <div class="back mx-auto py-4">
+    <div class="col-sm-12 col-md-10 col-md-offset-1 mx-auto">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Proizvod</th>
+            <th>Količina</th>
+            <th class="text-center">Cijena</th>
+            <th class="text-center">Ukupno</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of proizvodi; let i = index">
+            <td class="col-sm-8 col-md-6">
+              <div class="media">
+                <a class="thumbnail pull-left" href="#"> </a>
+                <div class="media-body">
+                  <h4 class="media-heading">
+                    <a>{{ x.proizvod }}</a>
+                  </h4>
+                </div>
+              </div>
+            </td>
+            <td class="col-sm-1 col-md-1" style="text-align: center">
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="x.kolicina"
+              />
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              <strong>{{ x.cijena }} kn</strong>
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              <strong>{{ x.kolicina * x.cijena || 0 }} kn</strong>
+            </td>
+            <td class="col-sm-1 col-md-1">
+              <button type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span> Ukloni
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><h5>Dostava</h5></td>
+            <td class="text-right">
+              <h5>
+                <strong>{{ dostava }} kn</strong>
+              </h5>
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><h3>Ukupno</h3></td>
+            <td class="text-right">
+              <h3 style="width: 130px">
+                <strong>{{ getSum() }} kn</strong>
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td></td>
+            <td>
+              <button type="button" class="btn btn-success">
+                Plaćanje <span class="glyphicon glyphicon-play"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<br /><br /><br /><br />
