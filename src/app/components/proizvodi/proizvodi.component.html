@@ -1,6 +1,6 @@
 <div class="cardKosara container mt-5">
   <p style="font-size: 25px" class="text-center pt-1">
-    Dodano: 2 | Ukupno:
+    Dodano: <a>{{ dodano() }}</a> | Ukupno:
     {{ getSumPrepJaja() + getSumKiselaPrepJaja() + getSumRezanci() }}
     kn
   </p>
@@ -19,9 +19,14 @@
     <li class="list-group-item">
       <strong>{{ x.proizvod }}</strong> --
       <a style="font-size: 34px">{{ x.cijena }} kn</a>
-      <input type="number" class="form-control" [(ngModel)]="x.kolicina" />
+      <input
+        type="number"
+        min="0"
+        class="form-control"
+        [(ngModel)]="x.kolicina"
+      />
       <button
-        (click)="DodajJaja(x.proizvod)"
+        (click)="DodajJaja(x.proizvod, x.kolicina, x.cijena)"
         class="btn btn-success dodaj mx-5"
         type="button"
       >
@@ -29,6 +34,9 @@
       </button>
     </li>
   </ul>
+  <span style="font-size: 20px; color: red" class="text-center mt-4">{{
+    feedback
+  }}</span>
   <ul class="mt-2 pt-4 kosarica" style="font-size: 20px">
     Ukupno:
     <strong>{{ getSumPrepJaja() }} kn</strong>
@@ -51,15 +59,24 @@
     <li class="list-group-item">
       <strong>{{ x.proizvod }}</strong> --
       <a style="font-size: 34px">{{ x.cijena }} kn</a>
-      <input type="number" class="form-control" [(ngModel)]="x.kolicina" />
+      <input
+        type="number"
+        min="0"
+        class="form-control"
+        [(ngModel)]="x.kolicina"
+      />
+      <button
+        (click)="dodajUkisJaja(x.proizvod, x.kolicina, x.cijena)"
+        class="btn btn-success dodaj mx-5"
+        type="button"
+      >
+        Dodaj u košaricu
+      </button>
     </li>
   </ul>
   <ul class="mt-2 pt-4 kosarica" style="font-size: 20px">
     Ukupno:
     <strong>{{ getSumKiselaPrepJaja() }} kn</strong>
-    <button class="btn btn-success dodaj mx-5" type="button">
-      Dodaj u košaricu
-    </button>
   </ul>
 </div>
 <br /><br />
@@ -77,15 +94,24 @@
     <li class="list-group-item">
       <strong>{{ x.proizvod }}</strong> --
       <a style="font-size: 34px">{{ x.cijena }} kn</a>
-      <input type="number" class="form-control" [(ngModel)]="x.kolicina" />
+      <input
+        type="number"
+        min="0"
+        class="form-control"
+        [(ngModel)]="x.kolicina"
+      />
+      <button
+        (click)="dodajRezanci(x.proizvod, x.kolicina, x.cijena)"
+        class="btn btn-success dodaj mx-5"
+        type="button"
+      >
+        Dodaj u košaricu
+      </button>
     </li>
   </ul>
   <ul class="mt-2 pt-4 kosarica" style="font-size: 20px">
     Ukupno:
     <strong>{{ getSumRezanci() }} kn</strong>
-    <button class="btn btn-success dodaj mx-5" type="button">
-      Dodaj u košaricu
-    </button>
   </ul>
 </div>
 

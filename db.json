@@ -1,0 +1,64 @@
+{
+  "prepelicja_jaja": [
+    {
+      "id": "",
+      "proizvod": "Rinfuza - kom.",
+      "cijena": 1.25,
+      "kolicina": 0
+    },
+    {
+      "id": "",
+      "proizvod": "Pakiranje - 12 jaja",
+      "cijena": 15,
+      "kolicina": 0
+    },
+    {
+      "id": "",
+      "proizvod": "Pakiranje - 20 jaja",
+      "cijena": 25,
+      "kolicina": 0
+    }
+  ],
+  "Ukiseljena_prepelicja_jaja": [
+    {
+      "id": "",
+      "proizvod": "teglica - 377 ml",
+      "cijena": 30,
+      "kolicina": 0
+    }
+  ],
+  "rezanci": [
+    {
+      "id": "",
+      "proizvod": "uski, 100 g",
+      "cijena": 10,
+      "kolicina": 0
+    },
+    {
+      "id": "",
+      "proizvod": "široki, 200 g",
+      "cijena": 20,
+      "kolicina": 0
+    }
+  ],
+  "kosarica": [
+    {
+      "proizvod": "Rinfuza - kom.",
+      "cijena": 1.25,
+      "kolicina": 1,
+      "id": 1
+    },
+    {
+      "proizvod": "Pakiranje - 20 jaja",
+      "cijena": 25,
+      "kolicina": 1,
+      "id": 2
+    },
+    {
+      "proizvod": "Pakiranje - 20 jaja",
+      "cijena": 25,
+      "kolicina": 2,
+      "id": 5
+    }
+  ]
+}

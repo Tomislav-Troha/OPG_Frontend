@@ -1,85 +1,159 @@
-<div class="container mt-5">
-  <div class="back mx-auto py-4">
-    <div class="col-sm-12 col-md-10 col-md-offset-1 mx-auto">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Proizvod</th>
-            <th>Količina</th>
-            <th class="text-center">Cijena</th>
-            <th class="text-center">Ukupno</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let x of proizvodi; let i = index">
-            <td class="col-sm-8 col-md-6">
-              <div class="media">
-                <a class="thumbnail pull-left" href="#"> </a>
-                <div class="media-body">
-                  <h4 class="media-heading">
-                    <a>{{ x.proizvod }}</a>
-                  </h4>
-                </div>
-              </div>
-            </td>
-            <td class="col-sm-1 col-md-1" style="text-align: center">
-              <input
-                type="number"
-                class="form-control"
-                [(ngModel)]="x.kolicina"
-              />
-            </td>
-            <td class="col-sm-1 col-md-1 text-center">
-              <strong>{{ x.cijena }} kn</strong>
-            </td>
-            <td class="col-sm-1 col-md-1 text-center">
-              <strong>{{ x.kolicina * x.cijena || 0 }} kn</strong>
-            </td>
-            <td class="col-sm-1 col-md-1">
-              <button type="button" class="btn btn-danger">
-                <span class="glyphicon glyphicon-remove"></span> Ukloni
-              </button>
-            </td>
-          </tr>
+<div class="container mt-5 p-3 rounded cart">
+  <div class="row no-gutters">
+    <div class="col-md-8">
+      <div class="product-details mr-2">
+        <div class="d-flex flex-row align-items-center">
+          <i class="fa fa-long-arrow-left"></i
+          ><a href="proizvodi" class="ml-2 mx-3">Nastavi sa kupovinom</a>
+        </div>
+        <hr />
+        <h6 class="mb-0">Košarica</h6>
+        <div class="d-flex justify-content-between">
+          <span
+            >Imas <a>{{ getKolicina() }}</a> proizvoda u košarici</span
+          >
+        </div>
+        <div
+          class="
+            d-flex
+            justify-content-between
+            align-items-center
+            mt-3
+            p-2
+            items
+            rounded
+          "
+          *ngFor="let x of kosarica; let i = index"
+        >
+          <div class="d-flex flex-row">
+            <div class="ml-2">
+              <span style="font-size: 20px" class="font-weight-bold d-block">{{
+                x.proizvod
+              }}</span
+              ><span style="font-size: 14px" class="spec"
+                >Količina: {{ x.kolicina }} kom.</span
+              >
+            </div>
+          </div>
+          <div class="d-flex flex-row align-items-center">
+            <span class="d-block">Cijena proizvoda: {{ x.cijena }} kn</span>
+            <span
+              style="font-size: 20px"
+              class="d-block ml-5 font-weight-bold mx-4"
+              >{{ x.cijena * x.kolicina }} kn </span
+            ><i
+              (click)="onDelete(x.id)"
+              class="fa trashCan fa-trash-o ml-3 text-black-50"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="payment-info">
+        <div class="d-flex justify-content-between align-items-center">
+          <span>Detalji</span>
+        </div>
+        <span class="type d-block mt-3 mb-1">Tip plaćanja</span
+        ><label class="radio">
+          <input
+            type="radio"
+            name="card"
+            value="payment"
+            checked
+            (click)="showDiv('kartica')"
+          />
+          <span class="mx-1"
+            ><img
+              width="30"
+              src="https://img.icons8.com/color/48/000000/mastercard.png"
+          /></span>
+        </label>
+        <label class="radio">
+          <input
+            type="radio"
+            name="card"
+            value="payment"
+            (click)="showDiv('kartica')"
+          />
+          <span class="mx-1"
+            ><img
+              width="30"
+              src="https://img.icons8.com/officel/48/000000/visa.png"
+          /></span>
+        </label>
 
-          <tr>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td><h5>Dostava</h5></td>
-            <td class="text-right">
-              <h5>
-                <strong>{{ dostava }} kn</strong>
-              </h5>
-            </td>
-          </tr>
-          <tr>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td><h3>Ukupno</h3></td>
-            <td class="text-right">
-              <h3 style="width: 130px">
-                <strong>{{ getSum() }} kn</strong>
-              </h3>
-            </td>
-          </tr>
-          <tr>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td></td>
-            <td>
-              <button type="button" class="btn btn-success">
-                Plaćanje <span class="glyphicon glyphicon-play"></span>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <label class="radio">
+          <input
+            type="radio"
+            name="card"
+            value="payment"
+            (click)="showDiv('pouzece')"
+          />
+
+          <span class="mx-1"
+            ><img
+              width="30"
+              src="https://image.flaticon.com/icons/png/512/1554/1554401.png"
+          /></span>
+        </label>
+        <div *ngIf="currDiv == 'kartica'">Kartica</div>
+        <div *ngIf="currDiv == 'pouzece'">Pouzeće</div>
+        <div>
+          <label class="credit-card-label">Ime i prezime</label
+          ><input
+            type="text"
+            class="form-control credit-inputs"
+            placeholder="Name"
+          />
+        </div>
+
+        <div *ngIf="currDiv == 'kartica' || currDiv !== 'pouzece'">
+          <label class="credit-card-label">Broj kartice</label
+          ><input
+            type="text"
+            class="form-control credit-inputs"
+            placeholder="0000 0000 0000 0000"
+          />
+        </div>
+        <div class="row">
+          <div
+            class="col-md-6"
+            *ngIf="currDiv == 'kartica' || currDiv !== 'pouzece'"
+          >
+            <label class="credit-card-label">Datum isteka</label
+            ><input
+              type="text"
+              class="form-control credit-inputs"
+              placeholder="12/24"
+            />
+          </div>
+          <div
+            class="col-md-6"
+            *ngIf="currDiv == 'kartica' || currDiv !== 'pouzece'"
+          >
+            <label class="credit-card-label">CVV</label
+            ><input
+              type="text"
+              class="form-control credit-inputs"
+              placeholder="342"
+            />
+          </div>
+        </div>
+        <hr class="line" />
+
+        <div class="d-flex justify-content-between information">
+          <span style="font-size: 20px">Ukupno: </span
+          ><span style="font-size: 20px">{{ getSum() }} kn</span>
+        </div>
+        <button
+          class="btn btn-primary btn-block d-flex justify-content-between mt-3"
+        >
+          <span class="mx-4"
+            >Plaćanje<i class="fa fa-long-arrow-right ml-1 mx-3"></i
+          ></span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
-
-<br /><br /><br /><br />

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faCartPlus, faOtter } from '@fortawesome/free-solid-svg-icons';
+import { ServiceService } from '../../-service.service';
+import { Properties } from '../../Properties';
 
 @Component({
   selector: 'app-proizvodi',
@@ -7,28 +9,45 @@ import { faCartPlus, faOtter } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./proizvodi.component.scss'],
 })
 export class ProizvodiComponent implements OnInit {
-  constructor() {}
+  constructor(private serviceService: ServiceService) {}
+
   jajca = 'assets/jajca.jpg';
   ukis = 'assets/ukis.jpg';
   rez = 'assets/rezanci.jpg';
   faCartPlus = faCartPlus;
+  feedback = '';
 
-  prepelicja_jaja: any = [
-    { id: 1, proizvod: 'Rifuza - kom.', cijena: 1.25, kolicina: 0 },
-    { id: 2, proizvod: 'pakiranje 12 jaja', cijena: 15.0, kolicina: 0 },
-    { id: 3, proizvod: 'pakiranje 20 jaja', cijena: 25.0, kolicina: 0 },
-  ];
+  prepelicja_jaja: Properties[] = [];
 
-  Ukiseljena_prepelicja_jaja: any = [
-    { proizvod: 'teglica - 377 ml', cijena: 30.0, kolicina: 0 },
-  ];
+  Ukiseljena_prepelicja_jaja: Properties[] = [];
 
-  rezanci: any = [
-    { proizvod: 'uski, 100 g', cijena: 10.0, kolicina: 0 },
-    { proizvod: 'široki, 200 g', cijena: 20.0, kolicina: 0 },
-  ];
+  rezanci: Properties[] = [];
 
-  ngOnInit(): void {}
+  kosarica: Properties[] = [];
+
+  ngOnInit(): void {
+    this.serviceService
+      .getJaja()
+      .subscribe((prepJaja) => (this.prepelicja_jaja = prepJaja));
+
+    this.serviceService
+      .getUkiseljena_prepelicja_jaja()
+      .subscribe(
+        (prepJajaUkis) => (this.Ukiseljena_prepelicja_jaja = prepJajaUkis)
+      );
+
+    this.serviceService
+      .getRezanci()
+      .subscribe((rezanci) => (this.rezanci = rezanci));
+
+    this.serviceService.getKosarica().subscribe((kos) => {
+      this.kosarica = kos;
+    });
+  }
+
+  dodano(): any {
+    return this.kosarica.length;
+  }
 
   getSumPrepJaja(): number {
     let sum = 0;
@@ -59,14 +78,73 @@ export class ProizvodiComponent implements OnInit {
     return sum;
   }
 
-  DodajJaja(proizvod: any) {
-    let ukupno = this.getSumPrepJaja();
-    let kolicina;
+  refreshKosarica() {
+    this.serviceService.getKosarica().subscribe((data) => {
+      //console.log('', data);
+      this.kosarica = data;
+    });
+  }
 
-    for (let i = 0; i < this.prepelicja_jaja.length; i++) {
-      kolicina = this.prepelicja_jaja[i].kolicina;
+  DodajJaja(proizvod: any, kol: any, cijena: any) {
+    let suma = this.getSumPrepJaja();
+    let id;
+    if (kol == 0 || cijena == 0) {
+      this.feedback = 'Molimo, odaberite kolicinu';
+    } else {
+      this.feedback = '';
+      let newJaja = {
+        proizvod: proizvod,
+        cijena: cijena,
+        kolicina: kol,
+        id: id,
+      };
+      console.log(newJaja, 'Ukupno:', suma);
+
+      this.serviceService.addJaja(newJaja).subscribe(() => {
+        this.refreshKosarica();
+      });
     }
-    console.log(proizvod, ukupno, kolicina);
-    return kolicina;
+  }
+
+  dodajUkisJaja(proizvod: any, kol: any, cijena: any) {
+    let suma = this.getSumPrepJaja();
+    let id;
+    if (kol == 0 || cijena == 0) {
+      this.feedback = 'Molimo, odaberite kolicinu';
+    } else {
+      this.feedback = '';
+      let newJaja = {
+        proizvod: proizvod,
+        cijena: cijena,
+        kolicina: kol,
+        id: id,
+      };
+      console.log(newJaja, 'Ukupno:', suma);
+
+      this.serviceService.addJaja(newJaja).subscribe((data) => {
+        console.log('data', data);
+      });
+    }
+  }
+
+  dodajRezanci(proizvod: any, kol: any, cijena: any) {
+    let suma = this.getSumPrepJaja();
+    let id;
+    if (kol == 0 || cijena == 0) {
+      this.feedback = 'Molimo, odaberite kolicinu';
+    } else {
+      this.feedback = '';
+      let newJaja = {
+        proizvod: proizvod,
+        cijena: cijena,
+        kolicina: kol,
+        id: id,
+      };
+      console.log(newJaja, 'Ukupno:', suma);
+
+      this.serviceService.addJaja(newJaja).subscribe((data) => {
+        console.log('data', data);
+      });
+    }
   }
 }

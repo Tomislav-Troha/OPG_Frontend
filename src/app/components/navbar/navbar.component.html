@@ -43,12 +43,21 @@
               >Prijava</a
             >
           </li>
+          <div>
+            <fa-icon
+              routerLink="kosarica"
+              class="shoppingBasket px-3 mb-1"
+              [icon]="faShoppingBasket"
+            ></fa-icon>
 
-          <fa-icon
-            routerLink="kosarica"
-            class="shoppingBasket px-3 mb-1"
-            [icon]="faShoppingBasket"
-          ></fa-icon>
+            <span
+              *ngIf="kosarica.length"
+              class="badge badge-warning"
+              id="lblCartCount"
+            >
+              {{ kosarica.length }}
+            </span>
+          </div>
         </ul>
       </div>
     </form>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Properties } from '../../Properties';
+import { ServiceService } from '../../-service.service';
 
 @Component({
   selector: 'app-kosarica',
@@ -6,25 +8,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kosarica.component.scss'],
 })
 export class KosaricaComponent implements OnInit {
-  proizvodi: any = [
-    { proizvod: 'Jaja - 15 kom.', cijena: 20.0, kolicina: 1 },
-    { proizvod: 'Kisela jaja', cijena: 15.0, kolicina: 1 },
-    { proizvod: 'Jaja-rifuza', cijena: 1.5, kolicina: 1 },
-    { proizvod: 'Meso', cijena: 30, kolicina: 1 },
-  ];
+  kosarica: Properties[] = [];
 
-  dostava: number = 10;
+  currDiv: string = 'kartica';
 
-  constructor() {}
+  constructor(private serviceService: ServiceService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.serviceService
+      .getKosarica()
+      .subscribe((prepJaja) => (this.kosarica = prepJaja));
+  }
+
+  showDiv(divVal: string) {
+    //console.log(divVal);
+    this.currDiv = divVal;
+  }
 
   getSum(): number {
     let sum = 0;
-    for (let i = 0; i < this.proizvodi.length; i++) {
-      sum += this.proizvodi[i].cijena * this.proizvodi[i].kolicina;
+    for (let i = 0; i < this.kosarica.length; i++) {
+      sum += this.kosarica[i].cijena * this.kosarica[i].kolicina;
     }
 
-    return sum + this.dostava;
+    return sum;
+  }
+
+  getKolicina() {
+    return this.kosarica.length;
+  }
+
+  refreshKosarica() {
+    this.serviceService.getKosarica().subscribe((data) => {
+      this.kosarica = data;
+      console.log(data);
+    });
+  }
+
+  onDelete(id: any) {
+    {
+      this.serviceService.deleteKosarica(id).subscribe(
+        () => this.refreshKosarica(),
+        (err) => console.log(err)
+      );
+    }
   }
 }
