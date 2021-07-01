@@ -7,55 +7,62 @@
         (ngSubmit)="onSubmitlogin(form.value, form)"
       >
         <h3 class="text-center pb-2">Prijava</h3>
-        <div class="input mx-auto">
-          <input
-            formControlName="email"
-            type="text"
-            class="input-field"
-            required
-          />
+        <div class="text-center">
+          <div class="input mx-auto">
+            <input
+              formControlName="email"
+              type="text"
+              class="input-field"
+              required
+            />
 
-          <label class="input-label">Email</label>
+            <label class="input-label">Email</label>
+          </div>
+
+          <span
+            style="color: red"
+            class="mt-1"
+            *ngIf="Email.errors && (Email.dirty || Email.touched)"
+          >
+            Email nije ispravan.
+          </span>
         </div>
 
-        <span
-          style="color: red"
-          class="mt-1 mx-5"
-          *ngIf="Email.errors && (Email.dirty || Email.touched)"
-        >
-          Email nije ispravan.
-        </span>
+        <div class="text-center">
+          <div class="input mx-auto">
+            <input
+              formControlName="lozinka"
+              type="password"
+              class="input-field"
+              required
+            />
 
-        <div class="input mx-auto">
-          <input
-            formControlName="lozinka"
-            type="password"
-            class="input-field"
-            required
-          />
+            <label class="input-label">Lozinka</label>
+          </div>
+          <p
+            style="color: red"
+            class="mt-1"
+            *ngIf="
+              Lozinka.errors?.required && (Lozinka.dirty || Lozinka.touched)
+            "
+          >
+            Lozinka je obavezna.
+          </p>
 
-          <label class="input-label">Lozinka</label>
+          <p
+            style="color: red"
+            class="mt-1"
+            *ngIf="Lozinka.errors && (Lozinka.dirty || Lozinka.touched)"
+          >
+            Lozinka mora sadržavati barem 6 znakova.
+          </p>
+
+          <br /><br />
+          <span style="color: red" class="text-center" *ngIf="feedback"
+            >Ispunite sva polja</span
+          >
         </div>
-        <p
-          style="color: red"
-          class="mt-1 mx-5"
-          *ngIf="Lozinka.errors?.required && (Lozinka.dirty || Lozinka.touched)"
-        >
-          Lozinka je obavezna.
-        </p>
-
-        <p
-          style="color: red"
-          class="mt-1 mx-5"
-          *ngIf="Lozinka.errors && (Lozinka.dirty || Lozinka.touched)"
-        >
-          Lozinka mora sadržavati barem 6 znakova.
-        </p>
-
-        <br /><br />
-        <span style="color: red" class="mx-auto" *ngIf="feedback"
-          >Ispunite sva polja</span
-        ><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br />
 
         <div class="text-center">
           <button type="submit" class="myButton mt-5 mx-auto mb-3 text-center">
@@ -73,73 +80,81 @@
         (ngSubmit)="onSubmitRegister(register.value, register)"
       >
         <h3 class="text-center pb-2">Registracija</h3>
-        <div class="input mx-auto">
-          <input
-            formControlName="ime"
-            type="text"
-            class="input-field"
-            required
-          />
-          <label class="input-label">Ime</label>
+        <div class="text-center">
+          <div class="input mx-auto">
+            <input
+              formControlName="ime"
+              type="text"
+              class="input-field"
+              required
+            />
+            <label class="input-label">Ime</label>
+          </div>
+          <span
+            style="color: red"
+            class="mt-1"
+            *ngIf="Ime.errors && (Ime.dirty || Ime.touched)"
+          >
+            Polje je obavezno.
+          </span>
+          <div class="input mx-auto">
+            <input
+              formControlName="prezime"
+              type="text"
+              class="input-field"
+              required
+            />
+            <label class="input-label">Prezime</label>
+          </div>
+          <span
+            style="color: red"
+            class="mt-1"
+            *ngIf="Prezime.errors && (Prezime.dirty || Prezime.touched)"
+          >
+            Polje je obavezno.
+          </span>
+          <div class="input mx-auto">
+            <input
+              formControlName="email"
+              type="text"
+              class="input-field"
+              required
+            />
+            <label class="input-label">Email</label>
+          </div>
+          <span
+            style="color: red"
+            class="mt-1"
+            *ngIf="EmailReg.errors && (EmailReg.dirty || EmailReg.touched)"
+          >
+            Email je neispravan
+          </span>
+          <div class="input mx-auto">
+            <input
+              formControlName="lozinka"
+              type="password"
+              class="input-field"
+              required
+            />
+            <label class="input-label">Lozinka</label>
+          </div>
+          <span
+            style="color: red"
+            class="mt-1"
+            *ngIf="
+              LozinkaReg.errors && (LozinkaReg.dirty || LozinkaReg.touched)
+            "
+          >
+            Lozinka mora sadržavati barem 6 znakova.
+          </span>
+          <br />
+          <span
+            style="color: red; width: auto"
+            class="text-center mt-5"
+            *ngIf="feedback1"
+            >Ispunite sva polja</span
+          >
         </div>
-        <span
-          style="color: red"
-          class="mt-1 mx-5"
-          *ngIf="Ime.errors && (Ime.dirty || Ime.touched)"
-        >
-          Polje je obavezno.
-        </span>
-        <div class="input mx-auto">
-          <input
-            formControlName="prezime"
-            type="text"
-            class="input-field"
-            required
-          />
-          <label class="input-label">Prezime</label>
-        </div>
-        <span
-          style="color: red"
-          class="mt-1 mx-5"
-          *ngIf="Prezime.errors && (Prezime.dirty || Prezime.touched)"
-        >
-          Polje je obavezno.
-        </span>
-        <div class="input mx-auto">
-          <input
-            formControlName="email"
-            type="text"
-            class="input-field"
-            required
-          />
-          <label class="input-label">Email</label>
-        </div>
-        <span
-          style="color: red"
-          class="mt-1 mx-5"
-          *ngIf="EmailReg.errors && (EmailReg.dirty || EmailReg.touched)"
-        >
-          Email je neispravan
-        </span>
-        <div class="input mx-auto">
-          <input
-            formControlName="lozinka"
-            type="password"
-            class="input-field"
-            required
-          />
-          <label class="input-label">Lozinka</label>
-        </div>
-        <span
-          style="color: red"
-          class="mt-1 mx-5"
-          *ngIf="LozinkaReg.errors && (LozinkaReg.dirty || LozinkaReg.touched)"
-        >
-          Lozinka mora sadržavati barem 6 znakova.
-        </span>
-        <span style="color: red" class="mx-auto" *ngIf="feedback1"
-          >Ispunite sva polja</span
-        >
         <div class="text-center">
           <button
             type="submit"

@@ -41,24 +41,14 @@
       "kolicina": 0
     }
   ],
-  "kosarica": [
+  "kosarica": [],
+  "register": [
     {
-      "proizvod": "Rinfuza - kom.",
-      "cijena": 1.25,
-      "kolicina": 1,
-      "id": 1
-    },
-    {
-      "proizvod": "Pakiranje - 20 jaja",
-      "cijena": 25,
-      "kolicina": 1,
-      "id": 2
-    },
-    {
-      "proizvod": "Pakiranje - 20 jaja",
-      "cijena": 25,
-      "kolicina": 2,
-      "id": 5
+      "ime": "Tomislav",
+      "prezime": "Troha",
+      "email": "tomo@gmail.com",
+      "lozinka": "123456",
+      "id": 3
     }
   ]
 }

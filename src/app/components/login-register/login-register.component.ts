@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Login } from '../../login';
+import { ServiceService } from '../../-service.service';
 import {
   NgForm,
   FormGroup,
@@ -24,7 +25,10 @@ export class LoginRegisterComponent implements OnInit {
   feedback: boolean = false;
   feedback1: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private serviceService: ServiceService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup(
@@ -91,21 +95,25 @@ export class LoginRegisterComponent implements OnInit {
 
   onSubmitRegister(value: any, LoginForm: FormControl) {
     //console.log(value);
+    let id;
     if (!this.register.valid || LoginForm.status == 'INVALID') {
       //console.log('Submit', LoginForm.status);
       this.feedback1 = true;
     } else {
       this.feedback1 = false;
-      console.log(
-        'Email:',
-        value.email,
-        'Lozinka:',
-        value.lozinka,
-        'Ime:',
-        value.ime,
-        'Prezime:',
-        value.prezime
-      );
+
+      let newReg = {
+        ime: value.ime,
+        prezime: value.prezime,
+        email: value.email,
+        lozinka: value.lozinka,
+        id: id,
+      };
+
+      this.serviceService.register(newReg).subscribe(() => {
+        console.log(newReg);
+      });
+      console.log(newReg);
     }
   }
 }

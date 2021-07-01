@@ -61,7 +61,7 @@
             name="card"
             value="payment"
             checked
-            (click)="showDiv('kartica')"
+            (click)="showDiv('mastercard')"
           />
           <span class="mx-1"
             ><img
@@ -74,7 +74,7 @@
             type="radio"
             name="card"
             value="payment"
-            (click)="showDiv('kartica')"
+            (click)="showDiv('visa')"
           />
           <span class="mx-1"
             ><img
@@ -97,7 +97,8 @@
               src="https://image.flaticon.com/icons/png/512/1554/1554401.png"
           /></span>
         </label>
-        <div *ngIf="currDiv == 'kartica'">Kartica</div>
+        <div *ngIf="currDiv == 'visa'">Visa</div>
+        <div *ngIf="currDiv == 'mastercard'">Mastercard</div>
         <div *ngIf="currDiv == 'pouzece'">Pouzeće</div>
         <div>
           <label class="credit-card-label">Ime i prezime</label
@@ -108,7 +109,13 @@
           />
         </div>
 
-        <div *ngIf="currDiv == 'kartica' || currDiv !== 'pouzece'">
+        <div
+          *ngIf="
+            currDiv == 'visa' ||
+            currDiv == 'mastercard' ||
+            currDiv !== 'pouzece'
+          "
+        >
           <label class="credit-card-label">Broj kartice</label
           ><input
             type="text"
@@ -119,7 +126,11 @@
         <div class="row">
           <div
             class="col-md-6"
-            *ngIf="currDiv == 'kartica' || currDiv !== 'pouzece'"
+            *ngIf="
+              currDiv == 'visa' ||
+              currDiv == 'mastercard' ||
+              currDiv !== 'pouzece'
+            "
           >
             <label class="credit-card-label">Datum isteka</label
             ><input
@@ -130,7 +141,11 @@
           </div>
           <div
             class="col-md-6"
-            *ngIf="currDiv == 'kartica' || currDiv !== 'pouzece'"
+            *ngIf="
+              currDiv == 'visa' ||
+              currDiv == 'mastercard' ||
+              currDiv !== 'pouzece'
+            "
           >
             <label class="credit-card-label">CVV</label
             ><input

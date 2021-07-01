@@ -5,6 +5,7 @@ import { KosaricaComponent } from './components/kosarica/kosarica.component';
 import { ProizvodiComponent } from './components/proizvodi/proizvodi.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { KontaktComponent } from './components/kontakt/kontakt.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'proizvodi', component: ProizvodiComponent },
   { path: 'profil', component: ProfilComponent },
   { path: 'prijava_registracija', component: LoginRegisterComponent },
+  { path: 'kontakt', component: KontaktComponent },
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KosaricaComponent } from './components/kosarica/kosarica.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { KontaktComponent } from './components/kontakt/kontakt.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
     KosaricaComponent,
     ProfilComponent,
     LoginRegisterComponent,
+    KontaktComponent,
   ],
   imports: [
     BrowserModule,

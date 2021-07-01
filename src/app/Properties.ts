@@ -4,3 +4,10 @@ export class Properties {
   kolicina: any;
   id: any;
 }
+
+export class Register {
+  ime: any;
+  prezime: any;
+  email: any;
+  lozinka: any;
+}

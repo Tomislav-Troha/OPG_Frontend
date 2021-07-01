@@ -9,8 +9,7 @@ import { ServiceService } from '../../-service.service';
 })
 export class KosaricaComponent implements OnInit {
   kosarica: Properties[] = [];
-
-  currDiv: string = 'kartica';
+  currDiv: string = 'visa';
 
   constructor(private serviceService: ServiceService) {}
 

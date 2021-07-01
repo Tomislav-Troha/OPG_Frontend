@@ -87,7 +87,7 @@ export class ProizvodiComponent implements OnInit {
 
   DodajJaja(proizvod: any, kol: any, cijena: any) {
     let suma = this.getSumPrepJaja();
-    let id;
+    let id = 1;
     if (kol == 0 || cijena == 0) {
       this.feedback = 'Molimo, odaberite kolicinu';
     } else {
