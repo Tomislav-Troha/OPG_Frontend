@@ -40,7 +40,7 @@ export class ProizvodiComponent implements OnInit {
       .getRezanci()
       .subscribe((rezanci) => (this.rezanci = rezanci));
 
-    this.serviceService.getKosarica().subscribe((kos) => {
+    this.serviceService.getKosaricaProizvod().subscribe((kos) => {
       this.kosarica = kos;
     });
   }
@@ -79,7 +79,7 @@ export class ProizvodiComponent implements OnInit {
   }
 
   refreshKosarica() {
-    this.serviceService.getKosarica().subscribe((data) => {
+    this.serviceService.getKosaricaProizvod().subscribe((data) => {
       //console.log('', data);
       this.kosarica = data;
     });

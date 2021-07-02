@@ -6,8 +6,13 @@ export class Properties {
 }
 
 export class Register {
-  ime: any;
-  prezime: any;
-  email: any;
-  lozinka: any;
+  ime!: string;
+  prezime!: string;
+  email!: string;
+  lozinka!: string;
+}
+
+export class Prijava {
+  email!: string;
+  lozinka!: string;
 }

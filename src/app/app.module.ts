@@ -5,6 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import 'animate.css';
 import { AppRoutingModule } from './app-routing.module';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { AuthInterceptor } from '../../src/app/interceptor/auth.interceptor';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -37,7 +41,14 @@ import { KontaktComponent } from './components/kontakt/kontakt.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ProizvodiComponent],
+  providers: [
+    ProizvodiComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

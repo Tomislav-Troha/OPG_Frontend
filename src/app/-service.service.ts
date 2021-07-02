@@ -56,18 +56,14 @@ export class ServiceService {
     });
   }
 
-  register(reg: Register) {
-    const headers = { 'content-type': 'application/json' };
-    //console.log('reg', reg);
-    const body = JSON.stringify(reg);
-    //console.log('body', body);
-    return this.http.post(`${this.apiUrl}/register`, body, {
-      headers: headers,
-    });
-  }
-
   getKosarica(): Observable<[Properties]> {
     return this.http.get<[Properties]>(`${this.apiUrl}/kosarica`).pipe();
+  }
+
+  getKosaricaProizvod(): Observable<[Properties]> {
+    return this.http
+      .get<[Properties]>(`${this.apiUrl}/kosarica/proizvod`)
+      .pipe();
   }
 
   deleteKosarica(id: any): Observable<void> {

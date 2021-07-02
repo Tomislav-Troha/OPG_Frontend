@@ -5,6 +5,7 @@ import { timer } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { ServiceService } from '../../-service.service';
 import { Properties } from '../../Properties';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,29 +15,20 @@ import { Properties } from '../../Properties';
 export class NavbarComponent implements OnInit {
   faShoppingBasket = faShoppingBasket;
   kosarica: Properties[] = [];
-  private timerObserver: any = Subscription;
 
   constructor(
     private serviceService: ServiceService,
-    private cdRef: ChangeDetectorRef
+    public auth: AuthService
   ) {}
 
   ngOnInit(): void {
     this.getSumKosara();
-    let numbers = timer(2000, 5000);
-    this.timerObserver = numbers.subscribe(() => {
-      this.getSumKosara();
-    });
-  }
-  ngOnDestroy() {
-    this.timerObserver.unsubscribe();
   }
 
   getSumKosara() {
-    this.serviceService.getKosarica().subscribe((data) => {
+    this.serviceService.getKosaricaProizvod().subscribe((data) => {
       //console.log('', data);
       this.kosarica = data;
-      this.cdRef.detectChanges();
     });
   }
 }

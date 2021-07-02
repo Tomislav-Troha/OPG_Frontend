@@ -40,13 +40,23 @@
             >
           </li>
 
-          <li class="nav-item mt-2">
+          <li *ngIf="!this.auth.isAuthenticated()" class="nav-item mt-2">
             <a
               class="nav-link active"
               routerLink="prijava_registracija"
               aria-current="page"
               href="#"
               >Prijava</a
+            >
+          </li>
+
+          <li *ngIf="this.auth.isAuthenticated()" class="nav-item mt-2">
+            <a
+              class="nav-link active"
+              (click)="this.auth.logout()"
+              aria-current="page"
+              href="#"
+              >Odjava</a
             >
           </li>
           <div>

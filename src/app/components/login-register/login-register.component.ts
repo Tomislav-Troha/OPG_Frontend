@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Login } from '../../login';
 import { ServiceService } from '../../-service.service';
+import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 import {
   NgForm,
   FormGroup,
@@ -24,10 +26,13 @@ export class LoginRegisterComponent implements OnInit {
   register: any;
   feedback: boolean = false;
   feedback1: boolean = false;
+  upijeh: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private serviceService: ServiceService
+    private serviceService: ServiceService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -89,12 +94,19 @@ export class LoginRegisterComponent implements OnInit {
       this.feedback = true;
     } else {
       this.feedback = false;
-      console.log('Email:', value.email, 'Lozinka:', value.lozinka);
+      this.feedback1 = false;
+
+      this.authService.prijava(value).subscribe(() => {
+        console.log(value);
+        this.router.navigate(['/proizvodi']);
+      });
+      console.log(value);
     }
   }
 
   onSubmitRegister(value: any, LoginForm: FormControl) {
     //console.log(value);
+
     let id;
     if (!this.register.valid || LoginForm.status == 'INVALID') {
       //console.log('Submit', LoginForm.status);
@@ -107,13 +119,14 @@ export class LoginRegisterComponent implements OnInit {
         prezime: value.prezime,
         email: value.email,
         lozinka: value.lozinka,
-        id: id,
       };
+      // console.log(newReg);
 
-      this.serviceService.register(newReg).subscribe(() => {
-        console.log(newReg);
+      this.authService.register(newReg).subscribe(() => {
+        // console.log(newReg);
       });
-      console.log(newReg);
+      this.upijeh = 'Odlicno, sad se prijavite!';
+      //console.log(newReg);
     }
   }
 }
