@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faCartPlus, faOtter } from '@fortawesome/free-solid-svg-icons';
 import { ServiceService } from '../../-service.service';
 import { Properties } from '../../Properties';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-proizvodi',
@@ -9,7 +10,10 @@ import { Properties } from '../../Properties';
   styleUrls: ['./proizvodi.component.scss'],
 })
 export class ProizvodiComponent implements OnInit {
-  constructor(private serviceService: ServiceService) {}
+  constructor(
+    private serviceService: ServiceService,
+    private authService: AuthService
+  ) {}
 
   jajca = 'assets/jajca.jpg';
   ukis = 'assets/ukis.jpg';
@@ -87,7 +91,8 @@ export class ProizvodiComponent implements OnInit {
 
   DodajJaja(proizvod: any, kol: any, cijena: any) {
     let suma = this.getSumPrepJaja();
-    let id = 1;
+    let id;
+    let email;
     if (kol == 0 || cijena == 0) {
       this.feedback = 'Molimo, odaberite kolicinu';
     } else {
@@ -97,6 +102,7 @@ export class ProizvodiComponent implements OnInit {
         cijena: cijena,
         kolicina: kol,
         id: id,
+        email: this.authService.userEmail(),
       };
       console.log(newJaja, 'Ukupno:', suma);
 
@@ -109,6 +115,7 @@ export class ProizvodiComponent implements OnInit {
   dodajUkisJaja(proizvod: any, kol: any, cijena: any) {
     let suma = this.getSumPrepJaja();
     let id;
+    let email;
     if (kol == 0 || cijena == 0) {
       this.feedback = 'Molimo, odaberite kolicinu';
     } else {
@@ -118,6 +125,7 @@ export class ProizvodiComponent implements OnInit {
         cijena: cijena,
         kolicina: kol,
         id: id,
+        email: this.authService.userEmail(),
       };
       console.log(newJaja, 'Ukupno:', suma);
 
@@ -130,6 +138,7 @@ export class ProizvodiComponent implements OnInit {
   dodajRezanci(proizvod: any, kol: any, cijena: any) {
     let suma = this.getSumPrepJaja();
     let id;
+    let email;
     if (kol == 0 || cijena == 0) {
       this.feedback = 'Molimo, odaberite kolicinu';
     } else {
@@ -139,6 +148,7 @@ export class ProizvodiComponent implements OnInit {
         cijena: cijena,
         kolicina: kol,
         id: id,
+        email: this.authService.userEmail(),
       };
       console.log(newJaja, 'Ukupno:', suma);
 

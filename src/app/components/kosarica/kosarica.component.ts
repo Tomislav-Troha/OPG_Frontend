@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Properties } from '../../Properties';
 import { ServiceService } from '../../-service.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-kosarica',
@@ -11,12 +12,16 @@ export class KosaricaComponent implements OnInit {
   kosarica: Properties[] = [];
   currDiv: string = 'visa';
 
-  constructor(private serviceService: ServiceService) {}
+  constructor(
+    private serviceService: ServiceService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.serviceService
-      .getKosarica()
-      .subscribe((prepJaja) => (this.kosarica = prepJaja));
+    this.serviceService.getKosarica().subscribe((kosara) => {
+      this.kosarica = kosara;
+      console.log(this.authService.userEmail(), this.kosarica);
+    });
   }
 
   showDiv(divVal: string) {

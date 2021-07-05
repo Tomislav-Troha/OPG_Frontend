@@ -2,6 +2,7 @@ export class Properties {
   proizvod: any;
   cijena: any;
   kolicina: any;
+  email: any;
   id: any;
 }
 

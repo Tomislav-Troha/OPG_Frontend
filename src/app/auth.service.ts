@@ -58,7 +58,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('user');
-    this.router.navigate(['/prijava_registracija']);
   }
 
   getUser() {
@@ -81,5 +80,12 @@ export class AuthService {
     // return a boolean reflecting
     // whether or not the token is expired
     return token;
+  }
+
+  userEmail() {
+    let user = this.getUser();
+    if (user) {
+      return user.email;
+    }
   }
 }
