@@ -61,7 +61,7 @@
           </li>
           <div>
             <fa-icon
-              routerLink="kosarica"
+              [routerLink]="['kosarica', this.auth.userEmail()]"
               class="shoppingBasket px-3 mb-1"
               [icon]="faShoppingBasket"
             ></fa-icon>

@@ -11,7 +11,11 @@ import { AuthguardService as AuthGuard } from './auth/authguard.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'kosarica', component: KosaricaComponent, canActivate: [AuthGuard] },
+  {
+    path: 'kosarica/:user',
+    component: KosaricaComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'proizvodi', component: ProizvodiComponent },
   { path: 'profil', component: ProfilComponent },
   { path: 'prijava_registracija', component: LoginRegisterComponent },
